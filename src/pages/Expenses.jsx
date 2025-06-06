@@ -2,7 +2,7 @@ import React from 'react';
 import TransationForm from '../Components/TransactionForm';
 
 const Expenses = ({ transactions, addTransaction, deleteTransaction }) => {
-  // Sort transactions by date, most recent first  
+  // Sort transactions by date, by the most recent first  
   const expenses = transactions
     .filter(t => t.type === 'expense')
     .sort((a, b) => new Date(b.date) - new Date(a.date));

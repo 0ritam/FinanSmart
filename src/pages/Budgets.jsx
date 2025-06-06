@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
+//The monthly budget is set in the local storage with persistency
 const Budgets = () => {
-  const [monthlyBudget, setMonthlyBudget] = useState(() => {
+  const [monthlyBudget, setMonthlyBudget] = useState(() => { //Initializes the monthlyBudget state with a value from localStorage or a default of 1000.
     try {
       const saved = localStorage.getItem('monthlyBudget');
       return saved ? parseFloat(saved) : 1000;
@@ -14,7 +15,7 @@ const Budgets = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [tempBudget, setTempBudget] = useState(monthlyBudget);
 
-  useEffect(() => {
+  useEffect(() => {  //Saves the monthlyBudget to localStorage whenever it changes.
     try {
       localStorage.setItem('monthlyBudget', monthlyBudget.toString());
     } catch (error) {

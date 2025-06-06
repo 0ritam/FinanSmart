@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Incomes = ({ transactions, addTransaction }) => {
   const [showNewIncomeForm, setShowNewIncomeForm] = useState(false);
@@ -7,11 +7,13 @@ const Incomes = ({ transactions, addTransaction }) => {
     amount: '',
   });
 
+  //This code processes the transactions array to create a summary of income transactions, grouped by category.
+
   const incomeStreams = transactions
-    .filter(t => t.type === 'income')
-    .reduce((acc, t) => {
-      if (!acc[t.category]) {
-        acc[t.category] = { amount: 0, count: 0 };
+    .filter(t => t.type === 'income') //creating an array of income type
+    .reduce((acc, t) => {    // aggergates the the filtered transactions into an object
+      if (!acc[t.category]) {      //initialize an empty object
+        acc[t.category] = { amount: 0, count: 0 };   //if the category does not exists, gets created
       }
       acc[t.category].amount += t.amount;
       acc[t.category].count += 1;
